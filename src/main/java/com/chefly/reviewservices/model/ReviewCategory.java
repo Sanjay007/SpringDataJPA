@@ -1,9 +1,6 @@
 package com.chefly.reviewservices.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -15,16 +12,20 @@ import java.util.Date;
 public class ReviewCategory {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "REVIEW_CAT_ID")
     Long id;
 
-    @Column(name="CATEGORY_NAME")
+    @Column(name="CATEGORY_NAME",nullable = false)
     @NotNull
     String name;
 
-    @Column(name="DATE_CREATED")
+    @Column(name="DATE_CREATED",nullable = false)
     @NotNull
     Date created_date;
+
+    @OneToOne(mappedBy="review_Cat_Id")
+    Ratings rating_cat;
 
     public Long getId() {
         return id;
@@ -48,5 +49,23 @@ public class ReviewCategory {
 
     public void setCreated_date(Date created_date) {
         this.created_date = created_date;
+    }
+
+    public Ratings getRating_cat() {
+        return rating_cat;
+    }
+
+    public void setRating_cat(Ratings rating_cat) {
+        this.rating_cat = rating_cat;
+    }
+
+    @Override
+    public String toString() {
+        return "ReviewCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", created_date=" + created_date +
+                ", rating_cat=" + rating_cat +
+                '}';
     }
 }
