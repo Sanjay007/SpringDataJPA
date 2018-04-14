@@ -3,6 +3,7 @@ package com.chefly.reviewservices.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Sanju on 11-Apr-18.
@@ -24,8 +25,8 @@ public class ReviewCategory {
     @NotNull
     Date created_date;
 
-    @OneToOne(mappedBy="review_Cat_Id")
-    Ratings rating_cat;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="review_Cat_Id")
+   Set<Ratings> rating_cat;
 
     public Long getId() {
         return id;
@@ -51,11 +52,11 @@ public class ReviewCategory {
         this.created_date = created_date;
     }
 
-    public Ratings getRating_cat() {
+    public Set<Ratings> getRating_cat() {
         return rating_cat;
     }
 
-    public void setRating_cat(Ratings rating_cat) {
+    public void setRating_cat(Set<Ratings> rating_cat) {
         this.rating_cat = rating_cat;
     }
 

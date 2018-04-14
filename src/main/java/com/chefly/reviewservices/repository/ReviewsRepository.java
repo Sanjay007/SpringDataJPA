@@ -5,8 +5,12 @@ import com.chefly.reviewservices.model.Reviews;
 import org.hibernate.cfg.annotations.reflection.JPAOverriddenAnnotationReader;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * Created by Sanju on 12-Apr-18.
  */
 public interface ReviewsRepository extends JpaRepository<Reviews,Long> {
+
+    List<Reviews> findByReferenceId(Long Id);
 }

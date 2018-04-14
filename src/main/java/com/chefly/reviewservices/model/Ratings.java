@@ -20,7 +20,7 @@ public class Ratings {
     @JoinColumn(name = "REVIEW_ID")
     Reviews reviewId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "REVIEW_CAT_ID")
     ReviewCategory review_Cat_Id;
 
